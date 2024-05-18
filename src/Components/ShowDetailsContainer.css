@@ -1,0 +1,10 @@
+section {
+	display: flex;
+	flex-direction: column;
+	place-self: center;
+	border: 2px orange solid;
+	width: 40rem;
+	height: 12.5rem;
+	padding: 1.35rem 0.5rem;
+	text-align: center;
+}

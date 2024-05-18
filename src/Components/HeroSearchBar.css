@@ -1,0 +1,10 @@
+#search {
+	width: 75vw;
+	height: 3rem;
+	border-radius: 10px;
+}
+
+button {
+	background: #102f66;
+	color: white;
+}

@@ -1,0 +1,27 @@
+section {
+	height: auto;
+	width: 30rem;
+	display: grid;
+	place-content: center;
+	border: 2px purple solid;
+
+	& .results-title-card-container {
+		border: 2px blue solid;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-evenly;
+		width: 15rem;
+		padding: 1.35rem 0.5rem;
+		}
+
+	& .results-title-info-container {
+		border: 2px green solid;
+		width: 15rem;
+		padding: 1.35rem 0.5rem;
+		text-align: center;
+	}
+
+	& img {
+		width: 6rem;
+	}
+}

@@ -1,0 +1,14 @@
+section {
+	display: flex;
+	width: 11rem;
+	flex-direction: column;
+	border: 2px blue solid;
+	padding: 1.35rem 0.5rem;
+
+	& img {
+		display: flex;
+		place-self: center;
+		width: 10rem;
+		height: 20rem;
+	}
+}

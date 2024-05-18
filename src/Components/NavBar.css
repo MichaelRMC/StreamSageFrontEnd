@@ -1,0 +1,21 @@
+form {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.nav-logo {
+	display: flex;
+
+}
+
+.nav-searchbar {
+	padding: 6px;
+	margin-left: 16px;
+	font-size: 17px;
+}
+
+.nav-searchbar button {
+	background: #102f66;
+	color: white;
+}
