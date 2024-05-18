@@ -1,10 +1,36 @@
 section {
+	border: 2px purple solid;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	align-items: center;
+	height: 110vh;
+}
+
+.show-details-title-card {
+	display: flex;
+	width: 11rem;
+	height: 75vh;
+	flex-direction: column;
+	justify-items: flex-start;
+	border: 2px blue solid;
+	padding: 1.35rem 0.5rem;
+
+	& img {
+		display: flex;
+		place-self: center;
+		width: 10rem;
+		height: 25rem;
+	}
+}
+
+.show-details-info-container {
 	display: flex;
 	flex-direction: column;
 	place-self: center;
 	border: 2px orange solid;
-	width: 40rem;
+	width: 45vw;
 	height: 12.5rem;
 	padding: 1.35rem 0.5rem;
 	text-align: center;
+	margin: 5rem;
 }
