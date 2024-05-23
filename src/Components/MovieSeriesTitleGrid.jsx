@@ -1,43 +1,85 @@
-import React from "react";
-
+import React, {useState, useEffect} from "react";
+import axios from "axios";
+import MovieTitleCard from './MovieTitleCard';
+import SeriesTitleCard from './SeriesTitleCard'
 function MovieSeriesTitleGrid() {
+	const [ movies, setMovies ] = useState( [] );
+	const [ tvSeries, setTvSeries ] = useState( [] );
+	const [ data, setData ] = useState( [] );
+
+	const api = import.meta.env.VITE_BASE_API_URL;
+	const watchMode = import.meta.env.VITE_WATCHMODE_API_URL;
+	const apiKey = import.meta.env.VITE_WATHMODE_API_KEY
+
+	
+	
+	useEffect( () => {
+		async function getMovies () {
+			const movies =
+				"https://api.watchmode.com/v1/list-titles/?apiKey=Ui7YTeBauBSWqUNNDvb24p5Vwqfth0D0Wr7Hewll&types=movie&source_types=sub&sort_by=popularity_desc&page=1&limit=10";
+			try {
+				const response = await axios.get(
+					"https://api.watchmode.com/v1/list-titles/?apiKey=Ui7YTeBauBSWqUNNDvb24p5Vwqfth0D0Wr7Hewll&types=movie&source_types=sub&sort_by=popularity_desc&page=1&limit=10"
+				);
+				console.log(response.data)
+				setMovies( response.data );
+			} catch ( error ) {
+				console.log(error);
+				
+      			if (error.response) {
+						console.error( 'Server Error:', error.response.status );
+					} else if ( error.request ) {
+        				console.error('Network Error:', error.request);
+      				}else {
+    					console.error('Error:', error.message);
+					}
+			}
+		}
+		getMovies();
+	}, [] );
+	
+useEffect(() => {
+	async function getTvSeries ()
+	{
+		const tvSeries =
+		"https://api.watchmode.com/v1/list-titles/?apiKey=Ui7YTeBauBSWqUNNDvb24p5Vwqfth0D0Wr7Hewll&types=tv-series&source_types=sub&sort_by=popularity_desc&page=1&limit=10";
+
+		try {
+			const response = await axios.get(
+				`${watchMode}/list-titles/?apiKey=${apiKey}&&types=tv_series&source_types=sub&sort_by=popularity_desc&page=1&limit=10`
+			);
+			setTvSeries(response.data);
+		} catch (error) {
+			console.error(error);
+		}
+	}
+	getTvSeries();
+}, []);
+
 	return (
 		<section>
-			<div class='movies-container'>
-				<div class='movies-container-h2'>
+			<div className='movies-container'>
+				<div className='movies-container-h2'>
 					<h2>Movies</h2>
 				</div>
-				<article class='movies-container-title-cards'>
+				<article className='movies-container-title-cards'>
 					<div>
-						<img src='https://lumiere-a.akamaihd.net/v1/images/p_disneyplusoriginals_themarvels_poster_rebrand_8c17eea5.jpeg' />
-					</div>
-					<div>
-						<img src='https://lumiere-a.akamaihd.net/v1/images/p_disneyplusoriginals_themarvels_poster_rebrand_8c17eea5.jpeg' />
-					</div>
-					<div>
-						<img src='https://lumiere-a.akamaihd.net/v1/images/p_disneyplusoriginals_themarvels_poster_rebrand_8c17eea5.jpeg' />
-					</div>
-					<div>
-						<img src='https://lumiere-a.akamaihd.net/v1/images/p_disneyplusoriginals_themarvels_poster_rebrand_8c17eea5.jpeg' />
+						
+						{movies.map((movie, id, imdb_id) => {
+							return <MovieTitleCard key={id} movie={movie} id={imdb_id} />;
+						})}
 					</div>
 				</article>
 			</div>
-			<div class='series-container'>
-				<div class='series-container-h2'>
+			<div className='series-container'>
+				<div className='series-container-h2'>
 					<h2>Series</h2>
 				</div>
-				<article class='series-container-title-cards'>
+				<article className='series-container-title-cards'>
 					<div>
-						<img src='https://lumiere-a.akamaihd.net/v1/images/p_disneyplusoriginals_echo_2788_v2_74ac97d9.jpeg' />
-					</div>
-					<div>
-						<img src='https://lumiere-a.akamaihd.net/v1/images/p_disneyplusoriginals_echo_2788_v2_74ac97d9.jpeg' />
-					</div>
-					<div>
-						<img src='https://lumiere-a.akamaihd.net/v1/images/p_disneyplusoriginals_echo_2788_v2_74ac97d9.jpeg' />
-					</div>
-					<div>
-						<img src='https://lumiere-a.akamaihd.net/v1/images/p_disneyplusoriginals_echo_2788_v2_74ac97d9.jpeg' />
+						{tvSeries.map((tvSeries, id, imdb_id) => {
+							return <SeriesTitleCard key={id} movie={tvSeries} id={imdb_id} />;
+						})}
 					</div>
 				</article>
 			</div>

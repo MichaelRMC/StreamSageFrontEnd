@@ -1,15 +1,16 @@
 import React from "react";
+import ShowDetailsTitleCard from "./ShowDetailsTitleCard";
 
 function ShowDetailsContainer() {
 	return (
 		<section>
 			<div>
-				<article class='show-details-title-card'>
-					<img src='https://i.redd.it/txne73o16iic1.jpeg' />
+				<article className='show-details-title-card'>
+					<ShowDetailsTitleCard />
 				</article>
 			</div>
 			<div>
-				<article class='show-details-info-container'>
+				<article className='show-details-info-container'>
 					<h3>Movie/Series Title</h3>
 					<p>Type: Movie/TV Series</p>
 					<span>
