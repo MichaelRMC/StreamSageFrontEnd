@@ -2,41 +2,32 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import MovieTitleCard from './MovieTitleCard';
 import SeriesTitleCard from './SeriesTitleCard'
+import useFetch from '../Hooks/useFetch'
 function MovieSeriesTitleGrid() {
 	const [ movies, setMovies ] = useState( [] );
 	const [ tvSeries, setTvSeries ] = useState( [] );
-	const [ data, setData ] = useState( [] );
+	const {data, error, isLoading} = useFetch()
+	
 
 	const api = import.meta.env.VITE_BASE_API_URL;
 	const watchMode = import.meta.env.VITE_WATCHMODE_API_URL;
 	const apiKey = import.meta.env.VITE_WATHMODE_API_KEY
 
 	
-	
-	useEffect( () => {
-		async function getMovies () {
-			const movies =
-				"https://api.watchmode.com/v1/list-titles/?apiKey=Ui7YTeBauBSWqUNNDvb24p5Vwqfth0D0Wr7Hewll&types=movie&source_types=sub&sort_by=popularity_desc&page=1&limit=10";
-			try {
-				const response = await axios.get(
-					"https://api.watchmode.com/v1/list-titles/?apiKey=Ui7YTeBauBSWqUNNDvb24p5Vwqfth0D0Wr7Hewll&types=movie&source_types=sub&sort_by=popularity_desc&page=1&limit=10"
-				);
-				console.log(response.data)
-				setMovies( response.data );
-			} catch ( error ) {
-				console.log(error);
-				
-      			if (error.response) {
-						console.error( 'Server Error:', error.response.status );
-					} else if ( error.request ) {
-        				console.error('Network Error:', error.request);
-      				}else {
-    					console.error('Error:', error.message);
-					}
-			}
+	const getMovies = (data, error, isLoading) =>  {
+		try
+		{
+			setIsLoading(true)
+			const response = useFetch( "https://api.watchmode.com/v1/list-titles/?apiKey=Ui7YTeBauBSWqUNNDvb24p5Vwqfth0D0Wr7Hewll&types=movie&source_types=sub&sort_by=popularity_desc&page=1&limit=10" );
+			setMovies( data );
+			setIsLoading(false)
+		} catch ( error )
+		{
+			console.log( error );
+			setIsLoading(false)
 		}
-		getMovies();
-	}, [] );
+	
+	}
 	
 useEffect(() => {
 	async function getTvSeries ()
