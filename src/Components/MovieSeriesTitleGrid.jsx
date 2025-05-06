@@ -3,50 +3,48 @@ import axios from "axios";
 import MovieTitleCard from './MovieTitleCard';
 import SeriesTitleCard from './SeriesTitleCard'
 import useFetch from '../Hooks/useFetch'
-function MovieSeriesTitleGrid() {
+function MovieSeriesTitleGrid (){
 	const [ movies, setMovies ] = useState( [] );
 	const [ tvSeries, setTvSeries ] = useState( [] );
-	const {data, error, isLoading} = useFetch()
 	
-
-	const api = import.meta.env.VITE_BASE_API_URL;
 	const watchMode = import.meta.env.VITE_WATCHMODE_API_URL;
 	const apiKey = import.meta.env.VITE_WATHMODE_API_KEY
 
+
 	
-	const getMovies = (data, error, isLoading) =>  {
-		try
-		{
-			setIsLoading(true)
-			const response = useFetch( "https://api.watchmode.com/v1/list-titles/?apiKey=Ui7YTeBauBSWqUNNDvb24p5Vwqfth0D0Wr7Hewll&types=movie&source_types=sub&sort_by=popularity_desc&page=1&limit=10" );
+	const getMovies = ( () => {
+		const movies =
+		`${watchMode}/list-titles/?apiKey=${apiKey}&types=movie&source_types=sub&sort_by=popularity_desc&page=1&limit=10`;
+		
+		try {
+			const response = useFetch( movies );
+			const data = response.data
 			setMovies( data );
 			setIsLoading(false)
-		} catch ( error )
-		{
+		} catch ( error ) {
 			console.log( error );
 			setIsLoading(false)
 		}
 	
-	}
+	})
 	
-useEffect(() => {
+/*useEffect(() => {
 	async function getTvSeries ()
 	{
 		const tvSeries =
-		"https://api.watchmode.com/v1/list-titles/?apiKey=Ui7YTeBauBSWqUNNDvb24p5Vwqfth0D0Wr7Hewll&types=tv-series&source_types=sub&sort_by=popularity_desc&page=1&limit=10";
+		`${watchMode}/list-titles/?apiKey=${apiKey}&types=tv-series&source_types=sub&sort_by=popularity_desc&page=1&limit=10`;
 
 		try {
-			const response = await axios.get(
-				`${watchMode}/list-titles/?apiKey=${apiKey}&&types=tv_series&source_types=sub&sort_by=popularity_desc&page=1&limit=10`
-			);
-			setTvSeries(response.data);
+			const response = useFetch(tvSeries);
+			const data = response.data;
+			setTvSeries(data);
 		} catch (error) {
 			console.error(error);
 		}
 	}
 	getTvSeries();
 }, []);
-
+*/
 	return (
 		<section>
 			<div className='movies-container'>
@@ -79,3 +77,5 @@ useEffect(() => {
 }
 
 export default MovieSeriesTitleGrid;
+
+

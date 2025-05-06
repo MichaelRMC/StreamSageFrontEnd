@@ -1,12 +1,12 @@
 import React from 'react';
-import NavBar from "../Components/NavBar/Header";
-import ResultsContainer from "../Components/ResultsContainerer""
+import NavBar from "../Components/NavBar";
+import ResultsContainer from "../Components/ResultsContainer"
 import RecommendationsFooter from "../Components/RecommendationsFooter"
 
 function Results() {
   return (
 		<div>
-		<Header />
+		<NavBar />
 		<ResultsContainer />
 		<RecommendationsFooter />
 		</div>
