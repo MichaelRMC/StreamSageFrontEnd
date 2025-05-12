@@ -1,34 +1,30 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import MovieTitleCard from './MovieTitleCard';
-import SeriesTitleCard from './SeriesTitleCard'
-import useFetch from '../Hooks/useFetch'
-function MovieSeriesTitleGrid (){
-	const [ movies, setMovies ] = useState( [] );
-	const [ tvSeries, setTvSeries ] = useState( [] );
-	
-	const watchMode = import.meta.env.VITE_WATCHMODE_API_URL;
-	const apiKey = import.meta.env.VITE_WATHMODE_API_KEY
+import MovieTitleCard from "./MovieTitleCard";
+import SeriesTitleCard from "./SeriesTitleCard";
+import useFetch from "../Hooks/useFetch";
+function MovieSeriesTitleGrid() {
+  const [movies, setMovies] = useState([]);
+  const [tvSeries, setTvSeries] = useState([]);
 
+  const watchMode = import.meta.env.VITE_WATCHMODE_API_URL;
+  const apiKey = import.meta.env.VITE_WATCHMODE_API_KEY;
 
-	
-	const getMovies = ( () => {
-		const movies =
-		`${watchMode}/list-titles/?apiKey=${apiKey}&types=movie&source_types=sub&sort_by=popularity_desc&page=1&limit=10`;
-		
-		try {
-			const response = useFetch( movies );
-			const data = response.data
-			setMovies( data );
-			setIsLoading(false)
-		} catch ( error ) {
-			console.log( error );
-			setIsLoading(false)
-		}
-	
-	})
-	
-/*useEffect(() => {
+  const getMovies = () => {
+    const movies = `${watchMode}/releases/?apiKey=${apiKey}`;
+
+    try {
+      const response = useFetch(movies);
+      const data = response.data;
+      setMovies(data);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+    }
+  };
+
+  /*useEffect(() => {
 	async function getTvSeries ()
 	{
 		const tvSeries =
@@ -45,37 +41,35 @@ function MovieSeriesTitleGrid (){
 	getTvSeries();
 }, []);
 */
-	return (
-		<section>
-			<div className='movies-container'>
-				<div className='movies-container-h2'>
-					<h2>Movies</h2>
-				</div>
-				<article className='movies-container-title-cards'>
-					<div>
-						
-						{movies.map((movie, id, imdb_id) => {
-							return <MovieTitleCard key={id} movie={movie} id={imdb_id} />;
-						})}
-					</div>
-				</article>
-			</div>
-			<div className='series-container'>
-				<div className='series-container-h2'>
-					<h2>Series</h2>
-				</div>
-				<article className='series-container-title-cards'>
-					<div>
-						{tvSeries.map((tvSeries, id, imdb_id) => {
-							return <SeriesTitleCard key={id} movie={tvSeries} id={imdb_id} />;
-						})}
-					</div>
-				</article>
-			</div>
-		</section>
-	);
+  return (
+	  <section class="movie-series-releases-container">
+     <div class="movie-releases-container"> 
+        <div className="movies-container-h2">
+          <h2>Movies</h2>
+        </div>
+        <article className="movies-container-title-cards">
+          <div>
+            {movies.map((movie, id, imdb_id) => {
+              return <MovieTitleCard key={id} movie={movie} id={imdb_id} />;
+            })}
+          </div>
+        </article>
+        <br />
+      </div> 
+    <div class="series-releases-container"> 
+      <div className="series-container-h2">
+          <h2>Series</h2>
+        </div>
+        <article className="series-container-title-cards">
+          <div>
+            {tvSeries.map((tvSeries, id, imdb_id) => {
+              return <SeriesTitleCard key={id} movie={tvSeries} id={imdb_id} />;
+            })}
+          </div>
+        </article>
+        </div>
+    </section>
+  );
 }
 
 export default MovieSeriesTitleGrid;
-
-
