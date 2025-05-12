@@ -60,7 +60,7 @@ function MovieSeriesTitleGrid (){
 					</div>
 				</article>
 			</div>
-			<div className='series-container'>
+		{/* 	<div className='series-container'>
 				<div className='series-container-h2'>
 					<h2>Series</h2>
 				</div>
@@ -71,7 +71,7 @@ function MovieSeriesTitleGrid (){
 						})}
 					</div>
 				</article>
-			</div>
+			</div> */}
 		</section>
 	);
 }
