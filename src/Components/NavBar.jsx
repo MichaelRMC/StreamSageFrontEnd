@@ -5,19 +5,17 @@ function NavBar() {
 		<div>
 			<header>
 				<nav>
-					<div className='nav-searchbar'>
-						<form>
-							<h1 className='nav-logo'>StreamSage</h1>
-							<div>
-								<input
-									type='search'
-									id='search'
-									name='search'
-									placeholder='Search'
-								/>
-								<button type='submit'>Submit</button>
-							</div>
-						</form>
+					<div className='nav-header'>
+						<h1 className='nav-logo'>StreamSage</h1>
+						<div className='nav-searchbar'>
+							<input
+								type='search'
+								id='search'
+								name='search'
+								placeholder='Search'
+							/>
+							<button type='submit'>Submit</button>
+						</div>
 					</div>
 				</nav>
 			</header>
