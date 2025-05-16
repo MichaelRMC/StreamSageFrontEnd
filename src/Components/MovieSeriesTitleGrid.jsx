@@ -11,7 +11,7 @@ function MovieSeriesTitleGrid() {
   const apiKey = import.meta.env.VITE_WATCHMODE_API_KEY;
 
   const getMovies = () => {
-    const movies = `${watchMode}/releases/?apiKey=${apiKey}`;
+    const movies = `${watchMode}/list-titles/?apiKey=${apiKey}&types=movie&source_types=sub&sort_by=popularity_desc&page=1&limit=5`;
 
     try {
       const response = useFetch(movies);
@@ -42,8 +42,8 @@ function MovieSeriesTitleGrid() {
 }, []);
 */
   return (
-	  <section class="movie-series-releases-container">
-     <div class="movie-releases-container"> 
+	<section className="movie-series-list-titles-container">
+    <div className="movie-list-titles-container"> 
         <div className="movies-container-h2">
           <h2>Movies</h2>
         </div>
@@ -54,12 +54,12 @@ function MovieSeriesTitleGrid() {
             })}
           </div>
         </article>
-        <br />
-      </div> 
-    <div class="series-releases-container"> 
+    </div> 
+    <br />
+    <div className="series-list-titles-container"> 
       <div className="series-container-h2">
           <h2>Series</h2>
-        </div>
+      </div>
         <article className="series-container-title-cards">
           <div>
             {tvSeries.map((tvSeries, id, imdb_id) => {
@@ -67,8 +67,8 @@ function MovieSeriesTitleGrid() {
             })}
           </div>
         </article>
-        </div>
-    </section>
+    </div>
+  </section>
   );
 }
 
