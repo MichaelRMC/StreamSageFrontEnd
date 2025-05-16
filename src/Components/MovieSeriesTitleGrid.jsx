@@ -16,6 +16,7 @@ function MovieSeriesTitleGrid() {
     try {
       const response = useFetch(movies);
       const data = response.data;
+      console.log(data);
       setMovies(data);
       setIsLoading(false);
     } catch (error) {
