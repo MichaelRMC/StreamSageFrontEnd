@@ -7,14 +7,14 @@ function MovieSeriesTitleGrid() {
   const [movies, setMovies] = useState([]);
   const [tvSeries, setTvSeries] = useState([]);
 
-  const watchMode = import.meta.env.VITE_WATCHMODE_API_URL;
-  const apiKey = import.meta.env.VITE_WATCHMODE_API_KEY;
+  const moviesApi = import.meta.env.VITE_API_MOVIE_RELEASES_URL;
+  const tvSeriesApi = import.meta.env.VITE_API_TV_SERIES_RELEASES_URL;
+ 
 
   const getMovies = () => {
-    const movies = `${watchMode}/list-titles/?apiKey=${apiKey}&types=movie&source_types=sub&sort_by=popularity_desc&page=1&limit=5`;
 
     try {
-      const response = useFetch(movies);
+      const response = useFetch(moviesApi);
       const data = response.data;
       console.log(data);
       setMovies(data);
@@ -28,11 +28,9 @@ function MovieSeriesTitleGrid() {
   /*useEffect(() => {
 	async function getTvSeries ()
 	{
-		const tvSeries =
-		`${watchMode}/list-titles/?apiKey=${apiKey}&types=tv-series&source_types=sub&sort_by=popularity_desc&page=1&limit=10`;
-
+	
 		try {
-			const response = useFetch(tvSeries);
+			const response = useFetch(tvSeriesApi);
 			const data = response.data;
 			setTvSeries(data);
 		} catch (error) {
