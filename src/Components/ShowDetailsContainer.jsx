@@ -1,5 +1,6 @@
 import React from "react";
 import ShowDetailsTitleCard from "./ShowDetailsTitleCard";
+import "./ShowDetailsContainer.css";
 
 function ShowDetailsContainer() {
 	return (

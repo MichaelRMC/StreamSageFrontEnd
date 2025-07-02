@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./NavBar.css";
 function NavBar() {
 	return (
 		<div>
@@ -14,7 +14,7 @@ function NavBar() {
 								name='search'
 								placeholder='Search'
 							/>
-							<button type='submit'>Submit</button>
+							<button className="submit" type='submit'>Submit</button>
 						</div>
 					</div>
 				</nav>

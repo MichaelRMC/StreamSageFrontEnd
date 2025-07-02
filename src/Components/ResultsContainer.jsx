@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./ResultsContainer.css";
 function ResultsTitleCardContainer() {
 	return (
 		<div>

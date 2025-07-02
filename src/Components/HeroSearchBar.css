@@ -1,3 +1,9 @@
+.hero-search-bar-container {
+	display: flex;
+	place-items: center;
+	
+}
+
 #search {
 	width: 75vw;
 	height: 3rem;

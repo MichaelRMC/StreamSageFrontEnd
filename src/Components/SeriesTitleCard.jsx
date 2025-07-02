@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './SeriesTitleCard.css'
 function SeriesTitleCard() {
   return (
 		<div>

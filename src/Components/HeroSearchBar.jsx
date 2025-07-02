@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import './HeroSearchBar.css';
 
 function HeroSearchBar() {
   return (
-    <div>
+    <div className='hero-search-bar-container'>
       <form>
         <input type="search" id='search' name='search' placeholder='Search' />
         <br />

@@ -3,6 +3,7 @@ import axios from "axios";
 import MovieTitleCard from "./MovieTitleCard";
 import SeriesTitleCard from "./SeriesTitleCard";
 import useFetch from "../Hooks/useFetch";
+import "./MovieSeriesTitleGrid.css";
 function MovieSeriesTitleGrid() {
   const [movies, setMovies] = useState([]);
   const [tvSeries, setTvSeries] = useState([]);

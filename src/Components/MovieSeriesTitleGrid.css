@@ -16,7 +16,6 @@ section {
 		}
 
 		& .movies-container-title-cards {
-			border: 2px blue solid;
 			padding: 1.2rem 0.5rem;
 			display: flex;
 			flex-direction: row;
@@ -41,7 +40,6 @@ section {
 		}
 
 		& .series-container-title-cards {
-			border: 2px blue solid;
 			padding: 1.2rem 0.5rem;
 			display: flex;
 			flex-direction: row;
