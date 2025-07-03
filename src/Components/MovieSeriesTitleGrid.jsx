@@ -2,73 +2,92 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import MovieTitleCard from "./MovieTitleCard";
 import SeriesTitleCard from "./SeriesTitleCard";
-import useFetch from "../Hooks/useFetch";
 import "./MovieSeriesTitleGrid.css";
+
 function MovieSeriesTitleGrid() {
   const [movies, setMovies] = useState([]);
   const [tvSeries, setTvSeries] = useState([]);
 
   const moviesApi = import.meta.env.VITE_API_MOVIE_RELEASES_URL;
   const tvSeriesApi = import.meta.env.VITE_API_TV_SERIES_RELEASES_URL;
- 
 
-  const getMovies = () => {
+  useEffect(() => {
+    const fetchData = async (url, setter) => {
+      try {
+        const { data } = await axios.get(url);
+        setter(data);
 
-    try {
-      const response = useFetch(moviesApi);
-      const data = response.data;
-      console.log(data);
-      setMovies(data);
-      setIsLoading(false);
-    } catch (error) {
-      console.log(error);
-      setIsLoading(false);
-    }
-  };
+        // Optional: Dev-only log
+        if (import.meta.env.DEV) {
+          console.log("Fetched data from:", url, data);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
 
-  /*useEffect(() => {
-	async function getTvSeries ()
-	{
-	
-		try {
-			const response = useFetch(tvSeriesApi);
-			const data = response.data;
-			setTvSeries(data);
-		} catch (error) {
-			console.error(error);
-		}
-	}
-	getTvSeries();
-}, []);
-*/
+    fetchData(moviesApi, setMovies);
+    fetchData(tvSeriesApi, setTvSeries);
+  }, []);
+
   return (
-	<section className="movie-series-list-titles-container">
-    <div className="movie-list-titles-container"> 
+    <section className="movie-series-list-titles-container">
+      {/* Movies Section */}
+      <div className="movie-list-titles-container">
         <div className="movies-container-h2">
           <h2>Movies</h2>
         </div>
         <article className="movies-container-title-cards">
           <div>
-            {movies.map((movie, id, imdb_id) => {
-              return <MovieTitleCard key={id} movie={movie} id={imdb_id} />;
-            })}
+            {movies.length > 0 ? (
+              movies.map((movie) => {
+                const { id, title, year, imdb_id } = movie;
+                return (
+                  <MovieTitleCard
+                    key={id}
+                    movie={movie}
+                    title={title}
+                    year={year}
+                    id={imdb_id}
+                  />
+                );
+              })
+            ) : (
+              <p>No movies available.</p>
+            )}
           </div>
         </article>
-    </div> 
-    <br />
-    <div className="series-list-titles-container"> 
-      <div className="series-container-h2">
-          <h2>Series</h2>
       </div>
+
+      <br />
+
+      {/* Series Section */}
+      <div className="series-list-titles-container">
+        <div className="series-container-h2">
+          <h2>Series</h2>
+        </div>
         <article className="series-container-title-cards">
           <div>
-            {tvSeries.map((tvSeries, id, imdb_id) => {
-              return <SeriesTitleCard key={id} movie={tvSeries} id={imdb_id} />;
-            })}
+            {tvSeries.length > 0 ? (
+              tvSeries.map((series) => {
+                const {id, title, year, imdb_id } = series;
+                return (
+                  <SeriesTitleCard
+                    key={id}
+                    tvSeries={series}
+                    title={title}
+                    year={year}
+                    id={imdb_id}
+                  />
+                );
+              })
+            ) : (
+              <p>No series available.</p>
+            )}
           </div>
         </article>
-    </div>
-  </section>
+      </div>
+    </section>
   );
 }
 

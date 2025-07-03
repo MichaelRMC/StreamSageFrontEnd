@@ -2,7 +2,6 @@
  	display: flex;
  	width: 6rem;
  	flex-direction: column;
- 	border: 2px blue solid;
  	padding: 1.35rem 0.5rem;
 
  	& img {

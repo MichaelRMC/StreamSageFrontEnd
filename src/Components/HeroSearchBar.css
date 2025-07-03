@@ -1,6 +1,6 @@
 .hero-search-bar-container {
 	display: flex;
-	place-items: center;
+	justify-content: center;
 	
 }
 
