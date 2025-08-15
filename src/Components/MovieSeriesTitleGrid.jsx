@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "./MovieSeriesTitleGrid.css";
 import MovieTitleCard from "./MovieTitleCard";
 import SeriesTitleCard from "./SeriesTitleCard";
-import "./MovieSeriesTitleGrid.css";
 
 function MovieSeriesTitleGrid() {
   const [movies, setMovies] = useState([]);
@@ -32,7 +32,6 @@ function MovieSeriesTitleGrid() {
 
   return (
     <section className="movie-series-list-titles-container">
-      {/* Movies Section */}
       <div className="movie-list-titles-container">
         <div className="movies-container-h2">
           <h2>Movies</h2>
@@ -58,10 +57,7 @@ function MovieSeriesTitleGrid() {
           </div>
         </article>
       </div>
-
       <br />
-
-      {/* Series Section */}
       <div className="series-list-titles-container">
         <div className="series-container-h2">
           <h2>Series</h2>
@@ -70,7 +66,7 @@ function MovieSeriesTitleGrid() {
           <div>
             {tvSeries.length > 0 ? (
               tvSeries.map((series) => {
-                const {id, title, year, imdb_id } = series;
+                const { id, title, year, imdb_id } = series;
                 return (
                   <SeriesTitleCard
                     key={id}

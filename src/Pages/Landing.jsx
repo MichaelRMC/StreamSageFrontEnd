@@ -1,17 +1,17 @@
-import React from 'react'
-import NavBar from '../Components/NavBar'
-import HeroSearchBar from '../Components/HeroSearchBar';
-import MovieTitleCard from '../Components/MovieTitleCard';
-import MovieSeriesTitleGrid from '../Components/MovieSeriesTitleGrid';
+import React from "react";
+import NavBar from "../Components/NavBar";
+import HeroSearchBar from "../Components/HeroSearchBar";
+import MovieTitleCard from "../Components/MovieTitleCard";
+import MovieSeriesTitleGrid from "../Components/MovieSeriesTitleGrid";
 function Landing() {
   return (
-		<div>
+    <div>
       <NavBar />
-	  <MovieTitleCard />
+      <MovieTitleCard />
       <MovieSeriesTitleGrid />
-	  	<HeroSearchBar />
-		</div>
-	);
+      <HeroSearchBar />
+    </div>
+  );
 }
 
-export default Landing
+export default Landing;
