@@ -17,8 +17,7 @@ function MovieSeriesTitleGrid() {
         const { data } = await axios.get(url);
         setter(data);
 
-        // Optional: Dev-only log
-        if (import.meta.env.DEV) {
+        if (moviesApi || tvSeriesApi) {
           console.log("Fetched data from:", url, data);
         }
       } catch (error) {
