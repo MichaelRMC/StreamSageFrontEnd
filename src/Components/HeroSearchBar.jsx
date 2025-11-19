@@ -1,16 +1,27 @@
-import React from 'react';
-import './HeroSearchBar.css';
+import React, {useState} from "react";
+import "./HeroSearchBar.css";
 
-function HeroSearchBar() {
+function HeroSearchBar () {
+  const [ query, setQuery ] = useState( "" );
+
+  function handleTextChange ( e ) {
+    setQuery(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
+  
   return (
-    <div className='hero-search-bar-container'>
+    <div className="hero-search-bar-container">
       <form>
-        <input type="search" id='search' name='search' placeholder='Search' />
+        <input type="search" id="search" name="search" placeholder="Search" onChange={handleTextChange} value={query}/>
         <br />
-        <button type="submit">Submit</button>
+        <button className="submit" type="submit"
+        onClick={handleSubmit}>Submit</button>
       </form>
     </div>
-  )
+  );
 }
 
-export default HeroSearchBar
+export default HeroSearchBar;
